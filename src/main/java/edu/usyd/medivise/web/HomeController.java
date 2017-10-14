@@ -1,4 +1,4 @@
-package edu.usyd.medivise;
+package edu.usyd.medivise.web;
 
 import java.text.DateFormat;
 import java.util.Date;
