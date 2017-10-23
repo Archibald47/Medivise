@@ -30,12 +30,16 @@ public class Question implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, updatable=false)
 	private Date created;
+    
+    @Column(name = "user", nullable = false)
+    private User user;
 
 	public Question() { }
 	
-	public Question(String title, String content) {
+	public Question(String title, String content, User user) {
 		this.title = title;
 		this.content = content;
+		this.user = user;
 		created = new Date();
 	}
 

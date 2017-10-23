@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.usyd.medivise.domain.Question;
+import edu.usyd.medivise.domain.User;
 import utils.NotFoundException;
 import utils.ValidationError;
 
@@ -28,9 +29,9 @@ public class QuestionServiceProvider implements QuestionService {
 	}
 
 	@Override
-	public long addQuestion(String title, String content) throws ValidationError {
+	public long addQuestion(String title, String content, User user) throws ValidationError {
 		if (title != null && title.length() > 0 && content != null && content.length() > 0) {
-			return (long) this.sessionFactory.getCurrentSession().save(new Question(title, content));
+			return (long) this.sessionFactory.getCurrentSession().save(new Question(title, content, user));
 		} else {
 			throw new ValidationError("Question title and content cannot be empty.");
 		}

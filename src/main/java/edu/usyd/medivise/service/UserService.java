@@ -30,7 +30,10 @@ public class UserService {
 	}
 
 	public boolean exists(String username) {
-		User u = (User) this.sessionFactory.getCurrentSession().get(User.class, username);
-		return u != null;
+		return getUserByUsername(username) != null;
+	}
+	
+	public User getUserByUsername(String username) {
+		return (User) this.sessionFactory.getCurrentSession().get(User.class, username);
 	}
 }

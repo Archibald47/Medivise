@@ -1,5 +1,6 @@
 package edu.usyd.medivise.web;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -23,9 +24,15 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, Principal principal) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
+		if (principal != null) {
+			String username = principal.getName();
+			model.addAttribute("username", username);
+		} else {
+			model.addAttribute("username", null);
+		}
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		

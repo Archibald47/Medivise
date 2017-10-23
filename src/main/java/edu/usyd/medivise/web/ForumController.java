@@ -1,5 +1,6 @@
 package edu.usyd.medivise.web;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.usyd.medivise.domain.Question;
+import edu.usyd.medivise.domain.User;
 import edu.usyd.medivise.service.QuestionService;
+import edu.usyd.medivise.service.UserService;
 import utils.ValidationError;
 
 @Controller
@@ -24,6 +27,9 @@ public class ForumController {
 
 	@Resource(name = "QuestionService")
 	private QuestionService qService;
+
+	@Resource(name = "UserService")
+	private UserService userService;
 
 	private static final Logger logger = LoggerFactory.getLogger(ForumController.class);
 
@@ -55,11 +61,12 @@ public class ForumController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String postNewQuestion(HttpServletRequest req) {
+	public String postNewQuestion(HttpServletRequest req, Principal principal) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
+		User user = userService.getUserByUsername(principal.getName());
 		try {
-			long id = this.qService.addQuestion(title, content);
+			long id = this.qService.addQuestion(title, content, user);
 			logger.info("Question created with id " + id + ".");
 			return "redirect:../" + id + "/";
 		} catch (ValidationError e) {
