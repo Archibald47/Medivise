@@ -6,4 +6,6 @@ import org.springframework.http.HttpStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
 
+	private static final long serialVersionUID = 3084169823543317917L;
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.usyd.medivise.dao.DoctorDao;
 import edu.usyd.medivise.domain.Doctor;
@@ -12,6 +13,7 @@ import edu.usyd.medivise.domain.Doctor;
 
 // create DAO components
 @Repository
+@Transactional
 public class DoctorDaoImpl implements DoctorDao {
 	@Autowired
 	private SessionFactory session;

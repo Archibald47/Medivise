@@ -23,6 +23,8 @@
 	
 	<context:component-scan base-package="edu.usyd.medivise" />
 	
+	<view-controller path="/login/" view-name="auth/login" />
+	<view-controller path="/register/" view-name="auth/register" />
 	
 	
 </beans:beans>

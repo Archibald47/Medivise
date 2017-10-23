@@ -45,6 +45,7 @@ public class ForumController {
 	@RequestMapping(value = "/{id}/delete/", method = RequestMethod.POST)
 	public String removeQuestion(@PathVariable("id") Long id) {
 		this.qService.deleteQuestionById(id);
+		logger.info("Question with id " + id + " deleted.");
 		return "redirect:../..";
 	}
 
@@ -59,6 +60,7 @@ public class ForumController {
 		String content = req.getParameter("content");
 		try {
 			long id = this.qService.addQuestion(title, content);
+			logger.info("Question created with id " + id + ".");
 			return "redirect:../" + id + "/";
 		} catch (ValidationError e) {
 			return "forum/new";

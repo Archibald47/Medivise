@@ -5,9 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//add JPA annotations (Java Persistence API)
-//描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中
-//JPA的宗旨是为POJO提供持久化标准规范
 @Entity
 public class Doctor 
 {
@@ -25,7 +22,6 @@ public class Doctor
 	public Doctor(){}
 	public Doctor(int id,String category,String available_time) {
 		super();
-		// TODO Auto-generated constructor stub
 		this.id=id;
 		this.category=category;
 		this.available_time=available_time;
