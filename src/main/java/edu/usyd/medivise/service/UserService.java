@@ -20,13 +20,28 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder pswordEncoder;
 	
-	public String create(String username, String password) throws ValidationError {
-		if (username != null && username.length() > 0) {
-			password = pswordEncoder.encode(password);
-			return (String) this.sessionFactory.getCurrentSession().save(new User(username, password));
-		} else {
+	private void validateUser(String username, String password) throws ValidationError {
+		if (exists(username)) {
+			throw new ValidationError("Username already used.");
+		}
+		if (username == null || username.length() == 0) {
 			throw new ValidationError("Empty username");
 		}
+		if (password == null || password.length() == 0) {
+			throw new ValidationError("Empty password");
+		}
+	}
+	
+	public String createUser(String username, String password) throws ValidationError {
+		validateUser(username, password);
+		password = pswordEncoder.encode(password);
+		return (String) this.sessionFactory.getCurrentSession().save(new User(username, password, User.roleUser));
+	}
+
+	public String createDoctor(String username, String password) throws ValidationError {
+		validateUser(username, password);
+		password = pswordEncoder.encode(password);
+		return (String) this.sessionFactory.getCurrentSession().save(new User(username, password, User.roleDoctor));
 	}
 
 	public boolean exists(String username) {

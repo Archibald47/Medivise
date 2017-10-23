@@ -3,10 +3,12 @@ package edu.usyd.medivise.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.usyd.medivise.domain.Comment;
+import edu.usyd.medivise.domain.Question;
 import edu.usyd.medivise.domain.User;
 import utils.NotFoundException;
 import utils.ValidationError;
@@ -23,15 +25,15 @@ public class CommentServiceProvider implements CommentService {
 	}
 
 	@Override
-	public List<Comment> getComments() {
-		System.out.println(this.sessionFactory.getCurrentSession().createCriteria(Comment.class).list());
-		return this.sessionFactory.getCurrentSession().createCriteria(Comment.class).list();
+	public List<Comment> getComments(Question question) {
+		return this.sessionFactory.getCurrentSession().createCriteria(Comment.class)
+				.add(Restrictions.eq("question", question)).list();
 	}
 
 	@Override
-	public long addComment(long questionId, String content, User user) throws ValidationError {
-		if (questionId > 0 && content != null && content.length() > 0) {
-			return (long) this.sessionFactory.getCurrentSession().save(new Comment(questionId, content, user, user.getUsername()));
+	public long addComment(Question question, String content, User user) throws ValidationError {
+		if (content != null && content.length() > 0) {
+			return (long) this.sessionFactory.getCurrentSession().save(new Comment(question, content, user));
 		} else {
 			throw new ValidationError("Comment title and content cannot be empty.");
 		}

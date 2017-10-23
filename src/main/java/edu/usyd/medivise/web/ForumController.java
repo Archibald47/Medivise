@@ -51,8 +51,8 @@ public class ForumController {
 
 		Question q = this.qService.getQuestionById(id);
 		uiModel.addAttribute("question", q);
-		//modified for comments
-		List<Comment> c = this.cServise.getComments();
+		
+		List<Comment> c = this.cServise.getComments(q);
 		uiModel.addAttribute("comment", c);
 		return "forum/question";
 	}
@@ -83,47 +83,18 @@ public class ForumController {
 		}
 	}
 	
-	@RequestMapping(value = "/{id}/comment/", method = RequestMethod.GET)
-	public String newComment(@PathVariable("id") Long id) {
-		return "forum/question" + id + "/";
-	}
 	
 	@RequestMapping(value = "/{id}/comment/", method = RequestMethod.POST)
-	public String addComment(@PathVariable("id") Long id,HttpServletRequest req, Principal principal) {
+	public String addComment(@PathVariable("id") Long qid,HttpServletRequest req, Principal principal) {
 		String content = req.getParameter("content");
 		User user = userService.getUserByUsername(principal.getName());
-		//logger.info("Question with id " + id + " deleted.");
-		//return "redirect:../..";
+		Question q = qService.getQuestionById(qid);
 		try {
-			long thiscid = this.cServise.addComment(id, content, user);
-			logger.info("Comment created with id " + id + ".");
-			return "forum/question" + id + "/";
+			long cid = this.cServise.addComment(q, content, user);
+			logger.info("Comment created with id " + cid + ".");
+			return "redirect:..";
 		} catch (ValidationError e) {
-			return "forum/";
+			return "redirect:..";
 		}
-	}
-	
-	
-	/*
-	@RequestMapping(value = "/{id}/comment/", method = RequestMethod.GET)
-	public String newComment() {
-		return "redirect:../" + "comment" + "/";
-	}
-	
-	@RequestMapping(value = "/{id}/comment/", method = RequestMethod.POST)
-	public String addComment(@PathVariable("id") Long id,HttpServletRequest req, Principal principal) {
-		String content = req.getParameter("content");
-		User user = userService.getUserByUsername(principal.getName());
-		//logger.info("Question with id " + id + " deleted.");
-		//return "redirect:../..";
-		try {
-			long thiscid = this.cServise.addComment(id, content, user);
-			logger.info("Comment created with id " + id + ".");
-			return "forum/" + id + "/";
-		} catch (ValidationError e) {
-			return "forum/new";
-		}
-	}
-	*/
-	
+	}	
 }

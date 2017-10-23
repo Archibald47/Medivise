@@ -10,20 +10,25 @@
 </head>
 <body>
 	<h1>Create new account</h1>
-	<form action="../createaccount/" method='POST'>
+	<form action="../createaccount/" method="POST">
 		<div class="form-group">
-			<label>User: <input class="form-control" type='text'
-				name='username' /></label>
+			<label>User: <input class="form-control" type="text"
+				name="username" /></label>
 		</div>
 
 		<div class="form-group">
-			<label>Password: <input class="form-control" type='password'
-				name='password' /></label>
+			<label>Password: <input class="form-control" type="password"
+				name="password" /></label>
 		</div>
 
 		<div class="form-group">
 			<label>Confirm password: <input class="form-control"
-				type='password' name='password2' /></label>
+				type="password" name="password2" /></label>
+		</div>
+
+		<div class="form-group">
+			<label>I am a doctor <input class="form-control"
+				type="checkbox" name="isdoctor" value="true" /></label>
 		</div>
 
 		<button class="btn btn-primary" name="submit" type="submit">

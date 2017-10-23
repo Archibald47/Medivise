@@ -24,7 +24,6 @@ public class QuestionServiceProvider implements QuestionService {
 
 	@Override
 	public List<Question> getQuestions() {
-		System.out.println(this.sessionFactory.getCurrentSession().createCriteria(Question.class).list());
 		return this.sessionFactory.getCurrentSession().createCriteria(Question.class).list();
 	}
 

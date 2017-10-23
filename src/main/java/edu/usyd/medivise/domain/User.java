@@ -16,6 +16,9 @@ import org.hibernate.validator.constraints.NotBlank;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 4187001708855857967L;
+	
+	public static final String roleUser = "ROLE_USER";
+	public static final String roleDoctor = "ROLE_DOCTOR";
 
 	@Id
 	@NotBlank
@@ -35,8 +38,8 @@ public class User implements Serializable {
 	public User() {
 	}
 	
-	public User(String username, String password) {
-		this(username, password, true, "ROLE_USER");
+	public User(String username, String password, String authority) {
+		this(username, password, true, authority);
 	}
 
 	public User(String username, String password, boolean enabled, String authority) {

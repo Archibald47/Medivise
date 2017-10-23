@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,29 +23,27 @@ public class Comment implements Serializable {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "questionId", nullable = false)
-	private long questionId;
+    @ManyToOne
+    @JoinColumn(name = "question")
+    private Question question;
 
 	@Column(name = "content", nullable = false)
 	private String content;
 
-	@Column(name = "author", nullable = false)
-	private String author;
-	
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, updatable=false)
 	private Date created;
-    
-    @Column(name = "user", nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "user")
     private User user;
 
 	public Comment() { }
 	
-	public Comment(long questionId, String content, User user, String author) {
-		this.questionId = questionId;
+	public Comment(Question question, String content, User user) {
+		this.question = question;
 		this.content = content;
 		this.user = user;
-		this.author = author;
 		created = new Date();
 	}
 
@@ -55,24 +55,16 @@ public class Comment implements Serializable {
 		this.id = id;
 	}
 
-	public long getQuestionId() {
-		return this.questionId;
+	public Question getQuestion() {
+		return this.question;
 	}
 
-	public void setTitle(long questionId) {
-		this.questionId = questionId;
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 	public String getContent() {
 		return this.content;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	
-	public String getAuthor() {
-		return this.author;
 	}
 
 	public void setContent(String content) {
@@ -81,6 +73,10 @@ public class Comment implements Serializable {
 	
 	public Date getCreated() {
 		return this.created;
+	}
+	
+	public User getUser() {
+		return user;
 	}
 
 }
