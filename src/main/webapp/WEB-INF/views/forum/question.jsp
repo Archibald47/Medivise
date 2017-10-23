@@ -22,8 +22,11 @@
 			<h3>
 				<a href="${ c.id }/">${ c.content }</a>
 			</h3>
+			
 			 -->
 			<p>${c.content}</p>
+			<p>made by ${c.author}</p>
+			
 		</div>
 	</c:forEach>
 	<hr>

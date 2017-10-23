@@ -83,6 +83,11 @@ public class ForumController {
 		}
 	}
 	
+	@RequestMapping(value = "/{id}/comment/", method = RequestMethod.GET)
+	public String newComment(@PathVariable("id") Long id) {
+		return "forum/question" + id + "/";
+	}
+	
 	@RequestMapping(value = "/{id}/comment/", method = RequestMethod.POST)
 	public String addComment(@PathVariable("id") Long id,HttpServletRequest req, Principal principal) {
 		String content = req.getParameter("content");
@@ -94,7 +99,7 @@ public class ForumController {
 			logger.info("Comment created with id " + id + ".");
 			return "forum/question" + id + "/";
 		} catch (ValidationError e) {
-			return "forum/new";
+			return "forum/";
 		}
 	}
 	

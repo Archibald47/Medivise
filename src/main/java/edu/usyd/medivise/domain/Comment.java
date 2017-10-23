@@ -27,6 +27,9 @@ public class Comment implements Serializable {
 	@Column(name = "content", nullable = false)
 	private String content;
 
+	@Column(name = "author", nullable = false)
+	private String author;
+	
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created", nullable = false, updatable=false)
 	private Date created;
@@ -36,10 +39,11 @@ public class Comment implements Serializable {
 
 	public Comment() { }
 	
-	public Comment(long questionId, String content, User user) {
+	public Comment(long questionId, String content, User user, String author) {
 		this.questionId = questionId;
 		this.content = content;
 		this.user = user;
+		this.author = author;
 		created = new Date();
 	}
 
@@ -61,6 +65,14 @@ public class Comment implements Serializable {
 
 	public String getContent() {
 		return this.content;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	public String getAuthor() {
+		return this.author;
 	}
 
 	public void setContent(String content) {

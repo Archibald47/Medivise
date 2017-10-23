@@ -31,7 +31,7 @@ public class CommentServiceProvider implements CommentService {
 	@Override
 	public long addComment(long questionId, String content, User user) throws ValidationError {
 		if (questionId > 0 && content != null && content.length() > 0) {
-			return (long) this.sessionFactory.getCurrentSession().save(new Comment(questionId, content, user));
+			return (long) this.sessionFactory.getCurrentSession().save(new Comment(questionId, content, user, user.getUsername()));
 		} else {
 			throw new ValidationError("Comment title and content cannot be empty.");
 		}
