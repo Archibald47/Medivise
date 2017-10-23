@@ -24,9 +24,9 @@
 			</h3>
 			
 			 -->
-			<p>${c.content}</p>
-			<p>made by ${c.author}</p>
-			
+			<p>Answer: ${c.content}</p>
+			<p>Provided by: ${c.author}</p>
+			<p>Created: ${c.created}</p>
 		</div>
 	</c:forEach>
 	<hr>
