@@ -23,14 +23,7 @@ import edu.usyd.medivise.domain.Event;
 @Controller
 @RequestMapping(value = "userEvents")
 public class EventController {
-	private static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("AppContext.xml");
-    private static String username;
-    String userPage = "/userPersonal";
-    
-    /************************************************************************
-     * Title: userHome
-     * Views the user's home page
-     ***********************************************************************/
+	
     @RequestMapping(value = {"","/"}, method = {RequestMethod.GET,RequestMethod.POST})
     public String userHome(Map<String, List> model, HttpSession session) {
         if (session.getAttribute("username") == null) // Kick user to home page if not logged in

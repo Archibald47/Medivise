@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
 <link rel="stylesheet"
@@ -13,9 +15,10 @@
 			<div class="alert alert-danger" role="alert" id="error">Incorrect login credentials. Please try again.
 			</div>
 		</c:if>
+		
 		<div class="form-group">
 			<label>User: <input class="form-control" type='text'
-				name='j_username' value=''></label>
+				name='j_username' /></label>
 
 		</div>
 		<div class="form-group">
