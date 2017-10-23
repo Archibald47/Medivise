@@ -8,7 +8,8 @@
 	<a href="..">Back to question list</a>
 	<h1>${ question.title }</h1>
 
-	<p>${ question.content }</p>
+	<p>Description: ${ question.content }</p>
+	<p>Created: ${question.created}</p>
 
 	<form action="delete/" method="post">
 		<input type="submit" value="Delete this question">
