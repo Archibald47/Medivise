@@ -17,6 +17,7 @@
 	
 	<h2>Comments</h2>
 	<c:forEach items="${ comment }" var="c">
+		<c:if test= "${c.questionId==question.id}">
 		<hr>
 		<div>
 			<!-- 
@@ -29,6 +30,7 @@
 			<p>Provided by: ${c.author}</p>
 			<p>Created: ${c.created}</p>
 		</div>
+		</c:if>
 	</c:forEach>
 	<hr>
 	
