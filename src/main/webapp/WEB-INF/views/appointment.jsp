@@ -46,7 +46,7 @@
 			</tr>
 			<c:forEach items="${ appointments }" var="app">
 				<tr>
-					<td">${ app.user.username }</td>
+					<td>${ app.user.username }</td>
 					<td>${ app.category }</td>
 					<td>${ app.availability }</td>
 				</tr>
