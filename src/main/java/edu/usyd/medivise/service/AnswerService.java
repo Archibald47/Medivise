@@ -10,7 +10,9 @@ import utils.ValidationError;
 public interface AnswerService {
 
 	public List<Answer> getAnswers(Question questoin);
-
+	
+	public List<Answer> getAnswersByUser(User user);
+	
 	public long addAnswer(Question question, String content, User user) throws ValidationError;
 
 	public Answer getAnswerById(long id);

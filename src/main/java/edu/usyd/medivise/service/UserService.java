@@ -43,7 +43,16 @@ public class UserService {
 		password = pswordEncoder.encode(password);
 		return (String) this.sessionFactory.getCurrentSession().save(new User(username, password, User.roleDoctor));
 	}
-
+	
+	public void changePassword(User user, String password) throws ValidationError{
+		if (password == null || password.length() == 0) {
+			throw new ValidationError("Empty password");
+		}
+		password = pswordEncoder.encode(password);
+		user.setPassword(password);
+		this.sessionFactory.getCurrentSession().update(user);
+	}
+	
 	public boolean exists(String username) {
 		return getUserByUsername(username) != null;
 	}

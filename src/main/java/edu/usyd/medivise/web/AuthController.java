@@ -26,14 +26,14 @@ public class AuthController {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		String password2 = req.getParameter("password2");
-		String isDoctot = req.getParameter("isdoctor");
+		String isDoctor = req.getParameter("isdoctor");
 		
 		if (!password.equals(password2)) {
 			return "redirect:../register/";
 		}
 
 		try {
-			if (isDoctot.equals("true")) {
+			if (isDoctor!=null&&isDoctor.equals("true")) {
 				this.userService.createDoctor(username, password);
 			} else {
 				this.userService.createUser(username, password);
@@ -41,6 +41,7 @@ public class AuthController {
 			logger.info("User created with username " + username + ".");
 			return "redirect:..";
 		} catch (ValidationError e) {
+			logger.info("Something is wrong here");
 			return "redirect:../register/";
 		}
 	}

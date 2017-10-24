@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.usyd.medivise.domain.Answer;
+import edu.usyd.medivise.domain.Comment;
 import edu.usyd.medivise.domain.Question;
 import edu.usyd.medivise.domain.User;
 import utils.NotFoundException;
@@ -54,6 +55,12 @@ public class AnswerServiceProvider implements AnswerService {
 	@Override
 	public void deleteAnswerById(long id) {
 		this.sessionFactory.getCurrentSession().delete(getAnswerById(id));
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(User user) {
+		return this.sessionFactory.getCurrentSession().createCriteria(Answer.class)
+				.add(Restrictions.eq("user", user)).list();
 	}
 
 }

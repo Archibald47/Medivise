@@ -3,9 +3,11 @@ package edu.usyd.medivise.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.usyd.medivise.domain.Answer;
 import edu.usyd.medivise.domain.Question;
 import edu.usyd.medivise.domain.User;
 import utils.NotFoundException;
@@ -48,6 +50,12 @@ public class QuestionServiceProvider implements QuestionService {
 	@Override
 	public void deleteQuestionById(long id) {
 		this.sessionFactory.getCurrentSession().delete(getQuestionById(id));
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(User user) {
+		return this.sessionFactory.getCurrentSession().createCriteria(Question.class)
+				.add(Restrictions.eq("user", user)).list();
 	}
 
 }
