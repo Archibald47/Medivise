@@ -12,16 +12,16 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 		<ul class="nav" style="margin-right: auto !important;">
-			<li class="nav-item"><a class="nav-link active" href="/">Medivise</a>
+			<li class="nav-item"><a class="nav-link active" href="/medivise/">Medivise</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="questions/">Forum</a></li>
-			<li class="nav-item"><a class="nav-link" href="map/">Map</a></li>
+			<li class="nav-item"><a class="nav-link" href="/medivise/questions/">Forum</a></li>
+			<li class="nav-item"><a class="nav-link" href="/medivise/map/">Map</a></li>
 		</ul>
-		<c:if test="${myName != null}">
-			<span class="navbar-text"> hi ${myName} </span>
+		<c:if test="${username != null}">
+			<span class="navbar-text"> <a href="/medivise/profile/">${username}</a> </span>
 		</c:if>
-		<c:if test="${myName == null}">
-			<span class="navbar-text"><a href="login/">login</a></span>
+		<c:if test="${username == null}">
+			<span class="navbar-text"><a href="/medivise/login/">login</a></span>
 
 		</c:if>
 	</nav>

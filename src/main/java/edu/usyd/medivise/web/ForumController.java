@@ -44,7 +44,17 @@ public class ForumController {
 	private static final Logger logger = LoggerFactory.getLogger(ForumController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Locale locale, Model uiModel) {
+	public String index(Locale locale, Model uiModel, Principal principal) {
+		if (principal != null) {
+			User u = userService.getUserByUsername(principal.getName());
+			uiModel.addAttribute("auth", u.getAuthority());
+			String username = principal.getName();
+			uiModel.addAttribute("username", username);
+		} else {
+			uiModel.addAttribute("auth", null);
+			uiModel.addAttribute("username", null);
+		}
+		
 		List<Question> q = this.qService.getQuestions();
 		uiModel.addAttribute("questions", q);
 		return "forum/index";
@@ -56,10 +66,13 @@ public class ForumController {
 		if (principal != null) {
 			User u = userService.getUserByUsername(principal.getName());
 			uiModel.addAttribute("auth", u.getAuthority());
+			String username = principal.getName();
+			uiModel.addAttribute("username", username);
 		} else {
 			uiModel.addAttribute("auth", null);
+			uiModel.addAttribute("username", null);
 		}
-
+		
 		Question q = this.qService.getQuestionById(id);
 		uiModel.addAttribute("question", q);
 		
@@ -79,7 +92,13 @@ public class ForumController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String newQuestion() {
+	public String newQuestion(Model uiModel,Principal principal) {
+		if (principal != null) {
+			String username = principal.getName();
+			uiModel.addAttribute("username", username);
+		} else {
+			uiModel.addAttribute("username", null);
+		}
 		return "forum/new";
 	}
 

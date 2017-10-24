@@ -44,7 +44,7 @@ public class ProfileController {
 		if (principal != null) {
 
 			User u = userService.getUserByUsername(principal.getName());
-			uiModel.addAttribute("myName", u.getUsername());
+			uiModel.addAttribute("username", u.getUsername());
 
 			String myAuth = u.getAuthority();
 			if (myAuth.equals(User.roleDoctor)) {
@@ -73,7 +73,7 @@ public class ProfileController {
 		if (principal != null) {
 
 			User u = userService.getUserByUsername(principal.getName());
-			uiModel.addAttribute("myName", u.getUsername());
+			uiModel.addAttribute("username", u.getUsername());
 
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
