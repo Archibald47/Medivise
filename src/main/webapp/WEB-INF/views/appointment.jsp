@@ -15,56 +15,68 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark bg-dark">
+	<nav class="navbar navbar-dark bg-dark">
 		<ul class="nav" style="margin-right: auto !important;">
-			<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/">Medivise</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/questions/">Forum</a></li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/map/">Map</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="${pageContext.request.contextPath}/">Medivise</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.request.contextPath}/questions/">Forum</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.request.contextPath}/map/">Map</a></li>
 		</ul>
 		<c:if test="${username != null}">
-			<span class="navbar-text"> <a href="${pageContext.request.contextPath}/profile/">${username}</a> </span>
+			<span class="navbar-text"> <a
+				href="${pageContext.request.contextPath}/profile/">${username}</a>
+			</span>
 		</c:if>
 		<c:if test="${username == null}">
-			<span class="navbar-text"><a href="${pageContext.request.contextPath}/login/">login</a></span>
+			<span class="navbar-text"><a
+				href="${pageContext.request.contextPath}/login/">login</a></span>
 		</c:if>
 	</nav>
-	<h1>Doctor's Data</h1>
-	
-	<c:if test="${user != null}">
-	
+	<div class="container lg-container">
 
-	<form action="add/" method="POST">
+		<h1>Doctor's availability</h1>
 
-		<div class="form-group">
-			<label>Category: <input class="form-control" type='text'
-				name='category' /></label>
-		</div>
-
-		<div class="form-group">
-			<label>Availability: <input class="form-control" type='text'
-				name='availability' /></label>
-		</div>
-
-		<button class="btn btn-primary" name="submit" type="submit">
-			Add</button>
-	</form>
-	</c:if>
-
-	<table>
-		<tr>
-			<th>Doctor name</th>
-			<th>Category</th>
-			<th>Available Time</th>
-		</tr>
-		<c:forEach items="${ appointments }" var=" app">
+		<table class="table">
 			<tr>
-				<td">${ app.user.username }</td>
-				<td>${ app.category }</td>
-				<td>${ app.availability }</td>
+				<th>Doctor name</th>
+				<th>Category</th>
+				<th>Available Time</th>
 			</tr>
-		</c:forEach>
+			<c:forEach items="${ appointments }" var="app">
+				<tr>
+					<td">${ app.user.username }</td>
+					<td>${ app.category }</td>
+					<td>${ app.availability }</td>
+				</tr>
+			</c:forEach>
 
-	</table>
+		</table>
+
+		<hr>
+
+		<c:if test="${isDoctor != null}">
+			<p>As a doctor, you can post your available time here to receive
+				appointments.</p>
+			<form action="add/" method="POST">
+
+				<div class="form-group">
+					<label>Category: <input class="form-control" type='text'
+						name='category' /></label>
+				</div>
+
+				<div class="form-group">
+					<label>Availability: <input class="form-control"
+						type='text' name='availability' /></label>
+				</div>
+
+				<button class="btn btn-primary" name="submit" type="submit">
+					Add</button>
+			</form>
+		</c:if>
+
+	</div>
+
 </body>
 </html>

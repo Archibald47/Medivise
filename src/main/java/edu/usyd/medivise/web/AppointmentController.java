@@ -39,8 +39,12 @@ public class AppointmentController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model uiModel, Principal principal) {
+		
 		if (principal != null) {
 			User u = userService.getUserByUsername(principal.getName());
+			uiModel.addAttribute("username", principal.getName());
+			logger.info(u.getAuthority());
+			logger.info(User.roleDoctor);
 			if (u.getAuthority().equals(User.roleDoctor)) {
 				uiModel.addAttribute("isDoctor", "true");
 			}

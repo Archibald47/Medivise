@@ -32,6 +32,9 @@
 			Medivise is an online information platform that provides expert advice to patients before they reach out to doctors by allowing patients make appointments in advance. Furthermore, it connects patients and doctors by through question and answering forums, map guiding, and appointment booking.
 		</p>
 		<a class="btn btn-primary" href="questions/">Goto forum</a>
+		<br>
+		<br>
+		<a class="btn btn-primary" href="appointment/">view doctor's availability</a>
 	</div>
 </body>
 </html>
