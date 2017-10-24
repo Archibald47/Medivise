@@ -4,7 +4,7 @@ An website that helps user to make appointments online and make it more convenie
 ## Authors
 
 * Chenrui(Chester) Liu
-* Archibald wang 
+* Archibald Weng 
 * Libai(Bella) Sun
 * Nirav Patel
 
