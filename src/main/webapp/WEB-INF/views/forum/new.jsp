@@ -11,34 +11,36 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 		<ul class="nav" style="margin-right: auto !important;">
-			<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/">Medivise</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/questions/">Forum</a></li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/map/">Map</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="${pageContext.request.contextPath}/">Medivise</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.request.contextPath}/questions/">Forum</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.request.contextPath}/map/">Map</a></li>
 		</ul>
 		<c:if test="${username != null}">
-			<span class="navbar-text"> <a href="${pageContext.request.contextPath}/profile/">${username}</a> </span>
+			<span class="navbar-text"> <a
+				href="${pageContext.request.contextPath}/profile/">${username}</a>
+			</span>
 		</c:if>
 		<c:if test="${username == null}">
-			<span class="navbar-text"><a href="${pageContext.request.contextPath}/login/">login</a></span>
+			<span class="navbar-text"><a
+				href="${pageContext.request.contextPath}/login/">login</a></span>
 		</c:if>
 	</nav>
-	<h1>Post a new questions</h1>
+	<div class="container md-container">
 
-	<br>
-	<br>
-	<center>
-			<form method="post">
-					<label>Title:  <input name="title"></label> 
-					<br> Content: <textarea name="content"></textarea>
-					<br>
-					
-					<button type="submit" class="btn btn-primary">Post</button>
-			</form>
-	</center>
-	
+		<h1>Post a new questions</h1>
 
-	
+		<br>
+		<form method="post">
+			<label>Title: <input name="title"></label> <br> <label>Content:</label>
+			<br>
+			<textarea name="content"></textarea>
+			<br>
+			<button type="submit" class="btn btn-primary">Post</button>
+		</form>
+	</div>
 
 </body>
 </html>

@@ -17,12 +17,9 @@
 			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/questions/">Forum</a></li>
 			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/map/">Map</a></li>
 		</ul>
-		<c:if test="${username != null}">
-			<span class="navbar-text"> <a href="${pageContext.request.contextPath}/profile/">${username}</a> </span>
-		</c:if>
-		<c:if test="${username == null}">
-			<span class="navbar-text"><a href="${pageContext.request.contextPath}/login/">login</a></span>
-		</c:if>
+		<span class="navbar-text"> <a
+			href="${pageContext.request.contextPath}/logout/">Logout</a>
+		</span>
 	</nav>
 	
 	

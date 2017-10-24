@@ -12,31 +12,31 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 		<ul class="nav" style="margin-right: auto !important;">
-			<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/">Medivise</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/questions/">Forum</a></li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/map/">Map</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="${pageContext.request.contextPath}/">Medivise</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.request.contextPath}/questions/">Forum</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.request.contextPath}/map/">Map</a></li>
 		</ul>
-		<c:if test="${username != null}">
-			<span class="navbar-text"> <a href="${pageContext.request.contextPath}/profile/">${username}</a> </span>
-		</c:if>
-		<c:if test="${username == null}">
-			<span class="navbar-text"><a href="${pageContext.request.contextPath}/login/">login</a></span>
-		</c:if>
+		<span class="navbar-text"> <a
+			href="${pageContext.request.contextPath}/logout/">Logout</a>
+		</span>
+
 	</nav>
-	
-	
+
+
 	<div class="container lg-container">
 		<h1>My Questions</h1>
-	<c:forEach items="${ questions }" var="q">
-		<hr>
-		<div>
-			<h3>
-				<a href="../questions/${ q.id }/">${ q.title}</a>
-			</h3>
-			<p>${q.content}</p>
-		</div>
-	</c:forEach>
+		<c:forEach items="${ questions }" var="q">
+			<hr>
+			<div>
+				<h3>
+					<a href="../questions/${ q.id }/">${ q.title}</a>
+				</h3>
+				<p>${q.content}</p>
+			</div>
+		</c:forEach>
 	</div>
 </body>
 </html>
