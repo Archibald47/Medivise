@@ -2,32 +2,43 @@
 <%@ page session="false"%>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
 <title>New question | Forum | Medivise</title>
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 		<ul class="nav" style="margin-right: auto !important;">
-			<li class="nav-item"><a class="nav-link active" href="/medivise/">Medivise</a>
+			<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/">Medivise</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="/medivise/questions/">Forum</a></li>
-			<li class="nav-item"><a class="nav-link" href="/medivise/map/">Map</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/questions/">Forum</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/map/">Map</a></li>
 		</ul>
 		<c:if test="${username != null}">
-			<span class="navbar-text"> <a href="/medivise/profile/">${username}</a> </span>
+			<span class="navbar-text"> <a href="${pageContext.request.contextPath}/profile/">${username}</a> </span>
 		</c:if>
 		<c:if test="${username == null}">
-			<span class="navbar-text"><a href="/medivise/login/">login</a></span>
-
+			<span class="navbar-text"><a href="${pageContext.request.contextPath}/login/">login</a></span>
 		</c:if>
 	</nav>
 	<h1>Post a new questions</h1>
 
-	<form method="post">
-		<label>Title: <input name="title"></label> <br> Content:
-		<br>
-		<textarea name="content"></textarea>
-		<br> <input type="submit" value="Post">
-	</form>
+	<br>
+	<br>
+	<center>
+			<form method="post">
+					<label>Title:  <input name="title"></label> 
+					<br> Content: <textarea name="content"></textarea>
+					<br>
+					
+					<button type="submit" class="btn btn-primary">Post</button>
+			</form>
+	</center>
+	
+
+	
 
 </body>
 </html>
