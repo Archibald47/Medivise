@@ -37,7 +37,9 @@
 		<h1>${ question.title }</h1>
 
 		<p>Description: ${ question.content }</p>
-		<p>Created: ${question.created}</p>
+		<p>Created: ${ question.created }</p>
+		<p>Asked by: ${ question.user.username }</p>
+		
 <!-- 
 		<form action="delete/" method="post">
 			<input class="btn" type="submit" value="Delete this question">
