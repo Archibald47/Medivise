@@ -73,5 +73,9 @@ public class Question implements Serializable {
 	public Date getCreated() {
 		return this.created;
 	}
+	
+	public User getUser(){
+		return this.user;
+	}
 
 }
