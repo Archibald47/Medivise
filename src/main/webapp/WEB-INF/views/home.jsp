@@ -25,12 +25,12 @@
 			<span class="navbar-text"><a href="${pageContext.request.contextPath}/login/">login</a></span>
 		</c:if>
 	</nav>
-	<div class="container lg-container">
+	<br>
+	<div class="container md-container">
 		<h1>Welcome to Medivise</h1>
-
-
-
-		<P>The time on the server is ${serverTime}.</P>
+		<p>
+			Medivise is an online information platform that provides expert advice to patients before they reach out to doctors by allowing patients make appointments in advance. Furthermore, it connects patients and doctors by through question and answering forums, map guiding, and appointment booking.
+		</p>
 		<a class="btn btn-primary" href="questions/">Goto forum</a>
 	</div>
 </body>
