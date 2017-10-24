@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.usyd.medivise.domain.Answer;
 import edu.usyd.medivise.domain.Comment;
 import edu.usyd.medivise.domain.Question;
 import edu.usyd.medivise.domain.User;
+import edu.usyd.medivise.service.AnswerService;
 import edu.usyd.medivise.service.CommentService;
 import edu.usyd.medivise.service.QuestionService;
 import edu.usyd.medivise.service.UserService;
@@ -34,8 +36,10 @@ public class ForumController {
 	private UserService userService;
 	
 	@Resource(name = "CommentService")
-	private CommentService cServise;
-	
+	private CommentService cService;
+
+	@Resource(name = "AnswerService")
+	private AnswerService answerService;
 
 	private static final Logger logger = LoggerFactory.getLogger(ForumController.class);
 
@@ -47,13 +51,23 @@ public class ForumController {
 	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-	public String getQuestion(@PathVariable("id") Long id, Model uiModel) {
+	public String getQuestion(@PathVariable("id") Long id, Model uiModel, Principal principal) {
+		
+		if (principal != null) {
+			User u = userService.getUserByUsername(principal.getName());
+			uiModel.addAttribute("auth", u.getAuthority());
+		} else {
+			uiModel.addAttribute("auth", null);
+		}
 
 		Question q = this.qService.getQuestionById(id);
 		uiModel.addAttribute("question", q);
 		
-		List<Comment> c = this.cServise.getComments(q);
+		List<Comment> c = this.cService.getComments(q);
 		uiModel.addAttribute("comment", c);
+		
+		List<Answer> a = answerService.getAnswers(q);
+		uiModel.addAttribute("answers", a);
 		return "forum/question";
 	}
 
@@ -90,8 +104,23 @@ public class ForumController {
 		User user = userService.getUserByUsername(principal.getName());
 		Question q = qService.getQuestionById(qid);
 		try {
-			long cid = this.cServise.addComment(q, content, user);
+			long cid = this.cService.addComment(q, content, user);
 			logger.info("Comment created with id " + cid + ".");
+			return "redirect:..";
+		} catch (ValidationError e) {
+			return "redirect:..";
+		}
+	}
+	
+	
+	@RequestMapping(value = "/{id}/postanswer/", method = RequestMethod.POST)
+	public String addAnswer(@PathVariable("id") Long qid,HttpServletRequest req, Principal principal) {
+		String content = req.getParameter("content");
+		User user = userService.getUserByUsername(principal.getName());
+		Question q = qService.getQuestionById(qid);
+		try {
+			long aid = this.answerService.addAnswer(q, content, user);
+			logger.info("Answer created with id " + aid + ".");
 			return "redirect:..";
 		} catch (ValidationError e) {
 			return "redirect:..";

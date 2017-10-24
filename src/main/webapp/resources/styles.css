@@ -1,0 +1,17 @@
+
+.container {
+	margin-right: auto;
+    margin-left: auto;
+}
+
+.sm-container {
+	max-width: 480px;
+}
+
+.md-container {
+	max-width: 600px;
+}
+
+.lg-container {
+	max-width: 960px;
+}

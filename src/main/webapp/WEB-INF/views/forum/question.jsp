@@ -2,7 +2,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>${ question.title }| Forum | Medivise</title>
+<title>${ question.title }|Forum| Medivise</title>
 </head>
 <body>
 	<a href="..">Back to question list</a>
@@ -26,18 +26,32 @@
 	</c:forEach>
 	<hr>
 
+	<c:if test="${ auth != null }">
 	<h2>Post a new comment</h2>
+	
+		<form action="comment/" method="post">
+			<textarea name="content"></textarea>
+			<br> <input type="submit" value="Comment">
+		</form>
+	</c:if>
 
-	<form action="comment/" method="post">
+	<h2>Answers</h2>
+	<c:forEach items="${ answers }" var="c">
+		<hr>
+		<div>
+			<p>Answer: ${ c.content }</p>
+			<p>Provided by: ${ c.user.username }</p>
+			<p>Created: ${ c.created }</p>
+		</div>
+	</c:forEach>
+	<hr>
 
-		<textarea name="content"></textarea>
-		<br> <input type="submit" value="Comment">
-	</form>
+	<c:if test="${ auth=='ROLE_DOCTOR' }">
+		<form action="postanswer/" method="post">
+			<textarea name="content"></textarea>
+			<br> <input type="submit" value="Comment">
+		</form>
+	</c:if>
 
-
-
-	<!-- 
-	<a href="comment/">Post a new comment</a>
-	 -->
 </body>
 </html>

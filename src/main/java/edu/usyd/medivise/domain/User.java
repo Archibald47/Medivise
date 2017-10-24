@@ -48,6 +48,10 @@ public class User implements Serializable {
 		this.enabled = enabled;
 		this.authority = authority;
 	}
+	
+	public boolean isDoctor() {
+		return authority.equals(User.roleDoctor);
+	}
 
 	public String getUsername() {
 		return username;
