@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="<c:url value="/statics/styles.css" />">
 </head>
 
-<body>
+<body background="http://images.missyuan.com/attachments/day_110915/20110915_a607f4905631c594223aRQxAI5Y68sr8.gif">
 	<nav class="navbar navbar-dark bg-dark">
 		<ul class="nav" style="margin-right: auto !important;">
 			<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/">Medivise</a>
